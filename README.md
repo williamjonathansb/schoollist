@@ -1,1 +1,1 @@
-# schoollist-api
+# schoollist
