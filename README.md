@@ -22,7 +22,7 @@ Docker Compose ja está incluido no pacote de instalação do Windows e do Mac, 
 
 ### Como rodar?
 
-Para rodar a aplicação inteira é apenas com o seguinte comando: 
+Para rodar a aplicação é necessario apenas executar o seguinte comando: 
 
 ```
 docker-compose up -d
