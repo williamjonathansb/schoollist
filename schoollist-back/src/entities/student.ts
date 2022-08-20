@@ -1,11 +1,15 @@
 import { Field, ObjectType } from "type-graphql";
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 @ObjectType()
 export class Student {
   @Field()
-  @PrimaryColumn({ type: "text", unique: true })
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field()
+  @Column({ type: "text" })
   cpf: string;
 
   @Field((type) => String)
