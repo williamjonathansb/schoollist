@@ -7,6 +7,7 @@ import {
   TextFieldStyled,
   SubmitButton,
 } from "./styles";
+import image from "../../assets/logo.png";
 
 export interface IStudent {
   cpf?: string;
@@ -31,6 +32,8 @@ export const SchoolListPage = () => {
   return (
     <SchoolListPageContainer>
       <SchoolListPageBox>
+        <img width="200" src={image} />
+
         <form onSubmit={handleSubmit((form) => submitHandler(form))}>
           <TextFieldStyled label="CPF" {...register("cpf")} />
           <TextFieldStyled label="Nome" {...register("name")} />
