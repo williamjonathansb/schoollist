@@ -63,6 +63,11 @@ export const TextFieldStyled = styled(TextField)`
   input:focus {
     box-shadow: none !important;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
 `;
 
 export const SubmitButton = styled(Button)`
