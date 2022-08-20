@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
-import { Box } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
+import { IStudent } from "../../pages/SchoolListPage";
 import { getStudentsQuery } from "../../services/student";
 import { DataGridStyled, SchoolListContainer } from "./styles";
 
@@ -34,32 +34,30 @@ const columns: GridColDef[] = [
   },
 ];
 
-export const SchoolList = () => {
-  const { data, loading, error } = useQuery(getStudentsQuery);
+export const SchoolList = ({ cpf, name, email }: IStudent) => {
+  const { data, loading, error, refetch } = useQuery(getStudentsQuery, {
+    variables: {
+      cpf,
+      name,
+      email,
+    },
+  });
 
   if (error) return <div>error</div>;
 
   return (
     <SchoolListContainer>
-      <Box
-        sx={{
-          height: 400,
-          width: "60%",
-          maxWidth: "1000px",
-        }}
-      >
-        <DataGridStyled
-          rows={!loading ? data.students : []}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          disableColumnMenu={true}
-          disableColumnSelector={true}
-          disableSelectionOnClick={true}
-          disableExtendRowFullWidth={true}
-          loading={loading}
-        />
-      </Box>
+      <DataGridStyled
+        rows={!loading ? data.students : []}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        disableColumnMenu={true}
+        disableColumnSelector={true}
+        disableSelectionOnClick={true}
+        disableExtendRowFullWidth={true}
+        loading={loading}
+      />
     </SchoolListContainer>
   );
 };

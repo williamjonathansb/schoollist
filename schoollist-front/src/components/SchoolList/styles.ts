@@ -1,11 +1,15 @@
+import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import styled from "styled-components";
 
-export const SchoolListContainer = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+export const SchoolListContainer = styled(Box)`
+  height: 400px;
+  min-width: 300px;
+  max-width: 700px;
+  width: 100%;
+
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 export const DataGridStyled = styled(DataGrid)`
