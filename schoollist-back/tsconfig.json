@@ -8,6 +8,8 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "outDir": "build", // Types should go into this directory. 
+    "rootDir": "./src",
     "declaration": true // Generate d.ts files
-  }
+  },
+  "include": ["**/*"],
 }
