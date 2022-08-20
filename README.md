@@ -2,6 +2,7 @@
 
 ### Uma simples aplicação para listagem de alunos contendo cpf, nome e sobronome
 
+<img src="https://user-images.githubusercontent.com/78751043/185766823-48202d87-3adf-4f05-af94-5c4d939371f4.png" alt="listagem de alunos" width="750"/>
 
 ### Tecnologias Usadas
 * React
