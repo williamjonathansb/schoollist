@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=descomplica
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=schoollist
+    volumes:
+      - pgdata:/data/postgres
+
+
+  api:
+    build: ./schoollist-back
+    container_name: schoollist-back
+    ports:
+      - 4000:4000
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=descomplica
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=schoollist
+    links:
+      - postgres
+    depends_on: 
+      - postgres
+
+volumes:
+  pgdata:
+    driver: local
