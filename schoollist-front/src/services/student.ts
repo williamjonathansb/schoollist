@@ -8,8 +8,8 @@ export interface IStudent {
 }
 
 export const getStudentsQuery = gql`
-  query GetStudents {
-    students {
+  query GetStudents($cpf: String, $name: String, $email: String) {
+    students(cpf: $cpf, name: $name, email: $email) {
       id
       cpf
       name
