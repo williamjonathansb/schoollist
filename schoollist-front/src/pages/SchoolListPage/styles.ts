@@ -33,6 +33,8 @@ export const SchoolListPageBox = styled(Box)`
       flex-direction: column;
     }
   }
+
+  padding: 10px;
 `;
 
 export const TextFieldStyled = styled(TextField)`

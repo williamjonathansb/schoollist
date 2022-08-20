@@ -12,7 +12,7 @@ const columns: GridColDef[] = [
     headerAlign: "center",
     align: "center",
     flex: 0.5,
-    minWidth: 100,
+    minWidth: 150,
   },
   {
     field: "name",
@@ -21,7 +21,7 @@ const columns: GridColDef[] = [
     headerAlign: "center",
     align: "center",
     flex: 0.3,
-    minWidth: 50,
+    minWidth: 100,
   },
   {
     field: "email",
@@ -30,7 +30,7 @@ const columns: GridColDef[] = [
     headerAlign: "center",
     align: "center",
     flex: 0.5,
-    minWidth: 50,
+    minWidth: 150,
   },
 ];
 
