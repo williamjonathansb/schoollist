@@ -39,12 +39,14 @@ export const DataGridStyled = styled(DataGrid)`
   }
 
   & .MuiDataGrid-cell {
-    border-right: 2px solid ${(props) => props.theme["green-500"]};
+    border-right: 2px solid ${(props) => props.theme["green-300"]};
   }
 
   & .MuiDataGrid-columnsContainer,
-  .MuiDataGrid-cell {
-    border-bottom: 2px solid ${(props) => props.theme["green-500"]};
+  .MuiDataGrid-cell,
+  .MuiDataGrid-virtualScrollerContent,
+  .MuiDataGrid-virtualScrollerRenderZone {
+    border-bottom: 1px solid ${(props) => props.theme["green-300"]};
   }
 
   & .MuiDataGrid-columnSeparator {
