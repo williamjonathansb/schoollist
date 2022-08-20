@@ -31,6 +31,18 @@ services:
     depends_on: 
       - postgres
 
+  app:
+    build: ./schoollist-front
+    container_name: schoollist-front
+    ports:
+     - 4200:4200
+    environment:
+      - POSTGRES_HOST=api
+    links:
+      - postgres
+    depends_on: 
+      - api
+
 volumes:
   pgdata:
     driver: local
