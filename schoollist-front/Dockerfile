@@ -1,20 +1,22 @@
-FROM node
+FROM node as builder
 
 WORKDIR /app
 
+COPY package.json .
+
+RUN npm install
+
 COPY . .
 
-RUN yarn install
-
-RUN yarn run build
+RUN npm run build
 
 FROM nginx:1.16.0-alpine
 
-COPY ./dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-COPY ./deploy/nginx/nginx.conf /etc/nginx/conf.d
+COPY /deploy/nginx/nginx.conf /etc/nginx/conf.d
 
 EXPOSE 4200
 
