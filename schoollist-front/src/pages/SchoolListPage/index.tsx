@@ -25,7 +25,7 @@ export const SchoolListPage = () => {
     setStudent({ cpf, name, email });
   };
 
-  const format = (variable: string | undefined) => {
+  const verifyString = (variable: string | undefined) => {
     return variable === "" ? undefined : variable;
   };
 
@@ -43,9 +43,9 @@ export const SchoolListPage = () => {
           </SubmitButton>
         </form>
         <SchoolList
-          cpf={format(student.cpf)}
-          name={format(student.name)}
-          email={format(student.email)}
+          cpf={verifyString(student.cpf)}
+          name={verifyString(student.name)}
+          email={verifyString(student.email)}
         />
       </SchoolListPageBox>
     </SchoolListPageContainer>
