@@ -4,6 +4,7 @@ import { IStudent } from "../../pages/SchoolListPage";
 import { getStudentsQuery } from "../../services/student";
 import { DataGridStyled, SchoolListContainer } from "./styles";
 import { DeleteStudentAction } from "../DeleteStudentAction";
+import { EditStudentAction } from "../EditStudentAction";
 
 export const SchoolList = ({ cpf, name, email }: IStudent) => {
   const columns: GridColumns = [
@@ -41,7 +42,7 @@ export const SchoolList = ({ cpf, name, email }: IStudent) => {
       headerClassName: "datagrid-header",
       width: 100,
       getActions: ({ id }) => {
-        return [<DeleteStudentAction id={id} />];
+        return [<EditStudentAction id={id} />, <DeleteStudentAction id={id} />];
       },
     },
   ];
