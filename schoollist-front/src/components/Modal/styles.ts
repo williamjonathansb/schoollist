@@ -58,6 +58,8 @@ export const SubmitButton = styled(Button)`
   font-weight: bold !important;
   color: #202024;
   background-color: #00e88f;
+  padding: 10px;
+  border-radius: 12px;
 
   :hover {
     background-color: #00955b;

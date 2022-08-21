@@ -61,7 +61,7 @@ export const SubmitButton = styled(Button)`
   background-color: ${(props: any) => props.theme["green-300"]}!important;
 
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 12px;
 `;
 
 export const ErrorMessage = styled(Typography)`

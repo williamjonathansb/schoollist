@@ -80,4 +80,5 @@ export const SubmitButton = styled(Button)`
   font-weight: bold !important;
   color: ${(props: any) => props.theme["grey-800"]}!important;
   background-color: ${(props: any) => props.theme["green-300"]}!important;
+  border-radius: 12px;
 `;
