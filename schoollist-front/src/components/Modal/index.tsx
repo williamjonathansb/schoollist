@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { GridActionsCellItem } from "@mui/x-data-grid";
 import React from "react";
 import { ModalBox, SubmitButton } from "./styles";
 
@@ -9,9 +10,20 @@ export const ModalComponent = (props: any) => {
 
   return (
     <div>
-      <SubmitButton type="button" variant="contained" onClick={handleOpen}>
-        {props.buttonName}
-      </SubmitButton>
+      {props.buttonIcon ? (
+        <GridActionsCellItem
+          icon={props.buttonIcon}
+          label={props.buttonIconLabel}
+          className="textPrimary"
+          onClick={handleOpen}
+          color="inherit"
+        />
+      ) : (
+        <SubmitButton type="button" variant="contained" onClick={handleOpen}>
+          {props.buttonName}
+        </SubmitButton>
+      )}
+
       <Modal
         open={open}
         onClose={handleClose}
