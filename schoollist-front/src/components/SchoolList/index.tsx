@@ -35,7 +35,7 @@ const columns: GridColDef[] = [
 ];
 
 export const SchoolList = ({ cpf, name, email }: IStudent) => {
-  const { data, loading, error, refetch } = useQuery(getStudentsQuery, {
+  const { data, loading, error } = useQuery(getStudentsQuery, {
     variables: {
       cpf,
       name,
@@ -43,12 +43,10 @@ export const SchoolList = ({ cpf, name, email }: IStudent) => {
     },
   });
 
-  if (error) return <div>error</div>;
-
   return (
     <SchoolListContainer>
       <DataGridStyled
-        rows={!loading ? data.students : []}
+        rows={loading || error ? [] : data.students}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
@@ -57,6 +55,7 @@ export const SchoolList = ({ cpf, name, email }: IStudent) => {
         disableSelectionOnClick={true}
         disableExtendRowFullWidth={true}
         loading={loading}
+        error={error}
       />
     </SchoolListContainer>
   );
