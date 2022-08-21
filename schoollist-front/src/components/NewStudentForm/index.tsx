@@ -13,8 +13,8 @@ import {
   TextFieldStyled,
 } from "./styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { client } from "../../ApolloClient/client";
 import { normalizeCPFInput } from "../../utils/CPFNormalizer";
+import { client } from "../../services/apolloClient";
 
 interface InputCreateStudent {
   cpf: string;

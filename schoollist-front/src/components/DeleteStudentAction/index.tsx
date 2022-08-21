@@ -2,8 +2,7 @@ import { useMutation } from "@apollo/client";
 import { deleteStudentQuery, getStudentsQuery } from "../../services/student";
 import { GridActionsCellItem, GridRowId } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { client } from "../../ApolloClient/client";
-
+import { client } from "../../services/apolloClient";
 interface DeleteStudentActionProps {
   id: GridRowId;
 }

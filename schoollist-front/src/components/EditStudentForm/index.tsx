@@ -17,10 +17,10 @@ import {
   TextFieldStyled,
 } from "./styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { client } from "../../ApolloClient/client";
 import { normalizeCPFInput } from "../../utils/CPFNormalizer";
 import { verifyString } from "../../utils/StringVerifier";
 import { GridRowId } from "@mui/x-data-grid";
+import { client } from "../../services/apolloClient";
 
 interface InputEditStudent {
   cpf?: string;

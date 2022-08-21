@@ -1,7 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
-import { client } from "./ApolloClient/client";
 import { SchoolListPage } from "./pages/SchoolListPage";
+import { client } from "./services/apolloClient";
 import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/default";
 
