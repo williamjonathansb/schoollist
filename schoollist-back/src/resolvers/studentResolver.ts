@@ -29,7 +29,7 @@ export class StudentResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async deleteStudent(@Arg("cpf") cpf: string) {
-    return deleteStudentUseCase({ cpf });
+  async deleteStudent(@Arg("id") id: number) {
+    return deleteStudentUseCase({ id });
   }
 }

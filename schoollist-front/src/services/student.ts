@@ -28,3 +28,9 @@ export const createStudentQuery = gql`
     }
   }
 `;
+
+export const deleteStudentQuery = gql`
+  mutation ($id: Float!) {
+    deleteStudent(id: $id)
+  }
+`;
