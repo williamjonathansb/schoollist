@@ -14,6 +14,7 @@ import {
 } from "./styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { client } from "../../ApolloClient/client";
+import { normalizeCPFInput } from "../../utils/CPFNormalizer";
 
 interface InputCreateStudent {
   cpf: string;
@@ -25,6 +26,7 @@ export const NewStudentForm = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     setError,
     formState: { errors },
     reset,
@@ -46,18 +48,27 @@ export const NewStudentForm = () => {
       return;
     }
 
-    await createUser({
-      variables: {
-        name,
-        cpf,
-        email,
-      },
-      refetchQueries: [getStudentsQuery],
-    });
+    try {
+      await createUser({
+        variables: {
+          name,
+          cpf,
+          email,
+        },
+        refetchQueries: [getStudentsQuery],
+      });
+    } catch (error) {
+      return;
+    }
 
     reset();
     client.resetStore();
     setStudentCreated(true);
+  };
+
+  const handleCPFChange = (event: any) => {
+    const cpfNormalized = normalizeCPFInput(event);
+    setValue("cpf", cpfNormalized);
   };
 
   return (
@@ -69,7 +80,8 @@ export const NewStudentForm = () => {
           <TextFieldStyled
             error={errors.cpf ? true : false}
             label="CPF"
-            {...register("cpf", { required: true })}
+            placeholder="000.000.000-00"
+            {...register("cpf", { required: true, onChange: handleCPFChange })}
             helperText={errors.cpf ? "CPF Inválido" : ""}
           />
           <TextFieldStyled
