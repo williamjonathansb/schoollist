@@ -22,6 +22,8 @@ export const SchoolListPageBox = styled(Box)`
 
   background-color: #006645;
   border-radius: 10px;
+  padding-bottom: 2rem !important;
+  padding-top: 2rem !important;
 
   form {
     display: flex;

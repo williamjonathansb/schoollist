@@ -8,6 +8,8 @@ import {
   SubmitButton,
 } from "./styles";
 import image from "../../assets/logo.png";
+import { NewStudentForm } from "../../components/NewStudentForm";
+import { ModalComponent } from "../../components/Modal";
 
 export interface IStudent {
   cpf?: string;
@@ -19,7 +21,7 @@ export const SchoolListPage = () => {
   const { register, handleSubmit } = useForm();
   const [student, setStudent] = useState<IStudent>({});
 
-  const submitHandler = (form: any) => {
+  const submitHandler = (form: IStudent) => {
     const { cpf, name, email } = form;
 
     setStudent({ cpf, name, email });
@@ -33,7 +35,6 @@ export const SchoolListPage = () => {
     <SchoolListPageContainer>
       <SchoolListPageBox>
         <img width="200" src={image} />
-
         <form onSubmit={handleSubmit((form) => submitHandler(form))}>
           <TextFieldStyled label="CPF" {...register("cpf")} />
           <TextFieldStyled label="Nome" {...register("name")} />
@@ -42,6 +43,9 @@ export const SchoolListPage = () => {
             Buscar
           </SubmitButton>
         </form>
+        <ModalComponent buttonName="Adicionar novo estudante">
+          <NewStudentForm />
+        </ModalComponent>
         <SchoolList
           cpf={verifyString(student.cpf)}
           name={verifyString(student.name)}
