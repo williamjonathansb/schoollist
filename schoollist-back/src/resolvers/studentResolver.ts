@@ -1,8 +1,10 @@
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { TypeOrmDatabase } from "../database";
 import { Student } from "../entities/student";
+import { DeleteResult } from "typeorm";
 import { listStudentsUseCase } from "../useCases/listStudentsUseCase";
 import { createStudentUseCase } from "../useCases/createStudentUseCase";
+import { deleteStudentUseCase } from "../useCases/deleteStudentUseCase";
 
 @Resolver((of) => Student)
 export class StudentResolver {
@@ -24,5 +26,10 @@ export class StudentResolver {
     @Arg("email") email: string
   ): Promise<Student> {
     return createStudentUseCase({ cpf, name, email });
+  }
+
+  @Mutation((returns) => Boolean)
+  async deleteStudent(@Arg("cpf") cpf: string) {
+    return deleteStudentUseCase({ cpf });
   }
 }
