@@ -1,6 +1,7 @@
 import { Arg, Query, Resolver } from "type-graphql";
 import { TypeOrmDatabase } from "../database";
 import { Student } from "../entities/student";
+import { Like } from "typeorm";
 
 @Resolver((of) => Student)
 export class StudentResolver {
@@ -12,12 +13,10 @@ export class StudentResolver {
     @Arg("name", { nullable: true }) name: string,
     @Arg("email", { nullable: true }) email: string
   ) {
-    return this.studentsRepository.find({
-      where: {
-        cpf,
-        name,
-        email,
-      },
+    return this.studentsRepository.findBy({
+      cpf: cpf ? Like(`%${cpf}%`) : cpf,
+      name: name ? Like(`%${name}%`) : name,
+      email: email ? Like(`%${email}%`) : email,
     });
   }
 }
