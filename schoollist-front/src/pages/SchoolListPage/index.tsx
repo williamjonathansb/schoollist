@@ -11,6 +11,7 @@ import image from "../../assets/logo.png";
 import { NewStudentForm } from "../../components/NewStudentForm";
 import { ModalComponent } from "../../components/Modal";
 import { normalizeCPFInput } from "../../utils/CPFNormalizer";
+import { verifyString } from "../../utils/StringVerifier";
 
 export interface IStudent {
   cpf?: string;
@@ -32,10 +33,6 @@ export const SchoolListPage = () => {
   const handleCPFChange = (event: any) => {
     const cpfNormalized = normalizeCPFInput(event);
     setValue("cpf", cpfNormalized);
-  };
-
-  const verifyString = (variable: string | undefined) => {
-    return variable === "" ? undefined : variable;
   };
 
   return (
