@@ -38,6 +38,8 @@ export const SchoolListPageBox = styled(Box)`
 `;
 
 export const TextFieldStyled = styled(TextField)`
+  max-width: 175px;
+
   & label.Mui-focused {
     color: white;
   }
