@@ -1,5 +1,7 @@
+import { IsCPF } from "brazilian-class-validator";
+import { IsEmail } from "class-validator";
 import { Field, ObjectType } from "type-graphql";
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 @ObjectType()
@@ -8,15 +10,17 @@ export class Student {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field()
-  @Column({ type: "text" })
+  @Field((type) => String)
+  @Column({ type: "text", unique: true })
+  @IsCPF()
   cpf: string;
 
   @Field((type) => String)
   @Column({ type: "text" })
   name: string;
 
-  @Field()
+  @Field((type) => String)
   @Column({ type: "text" })
+  @IsEmail()
   email: string;
 }
