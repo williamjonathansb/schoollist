@@ -17,3 +17,14 @@ export const getStudentsQuery = gql`
     }
   }
 `;
+
+export const createStudentQuery = gql`
+  mutation ($name: String!, $cpf: String!, $email: String!) {
+    createStudent(name: $name, cpf: $cpf, email: $email) {
+      id
+      cpf
+      name
+      email
+    }
+  }
+`;
