@@ -1,4 +1,6 @@
-export const normalizeCPFInput = (event: any) => {
+export const normalizeCPFInput = (
+  event: React.ChangeEvent<HTMLInputElement>
+) => {
   const { value } = event.target;
   const cpfNormalized = value
     .replace(/\D/g, "")

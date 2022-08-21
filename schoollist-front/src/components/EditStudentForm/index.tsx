@@ -3,7 +3,11 @@ import { CircularProgress, Typography } from "@mui/material";
 import { isCPF } from "brazilian-values";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { editStudentQuery, getStudentsQuery } from "../../services/student";
+import {
+  editStudentQuery,
+  getStudentsQuery,
+  IStudent,
+} from "../../services/student";
 import {
   BoxStyled,
   ErrorMessage,
@@ -16,15 +20,19 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { client } from "../../ApolloClient/client";
 import { normalizeCPFInput } from "../../utils/CPFNormalizer";
 import { verifyString } from "../../utils/StringVerifier";
+import { GridRowId } from "@mui/x-data-grid";
 
 interface InputEditStudent {
-  id: string;
   cpf?: string;
   name?: string;
   email?: string;
 }
 
-export const EditStudentForm = ({ id }: any) => {
+interface EditStudentFormProps {
+  id: GridRowId;
+}
+
+export const EditStudentForm = ({ id }: EditStudentFormProps) => {
   const {
     register,
     handleSubmit,
@@ -63,7 +71,7 @@ export const EditStudentForm = ({ id }: any) => {
     setStudentEdited(true);
   };
 
-  const handleCPFChange = (event: any) => {
+  const handleCPFChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const cpfNormalized = normalizeCPFInput(event);
     setValue("cpf", cpfNormalized);
   };
@@ -90,7 +98,7 @@ export const EditStudentForm = ({ id }: any) => {
             )}
           </div>
           <SubmitButton type="submit" variant="contained">
-            Editar Estudante
+            Editar Aluno
           </SubmitButton>
         </FormStyled>
       )}

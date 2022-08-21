@@ -25,12 +25,11 @@ export const SchoolListPage = () => {
 
   const submitHandler = (form: IStudent) => {
     const { cpf, name, email } = form;
-    console.log(cpf);
 
     setStudent({ cpf, name, email });
   };
 
-  const handleCPFChange = (event: any) => {
+  const handleCPFChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const cpfNormalized = normalizeCPFInput(event);
     setValue("cpf", cpfNormalized);
   };
@@ -51,7 +50,7 @@ export const SchoolListPage = () => {
             Buscar
           </SubmitButton>
         </form>
-        <ModalComponent buttonName="Adicionar novo estudante">
+        <ModalComponent buttonName="Adicionar novo aluno">
           <NewStudentForm />
         </ModalComponent>
         <SchoolList

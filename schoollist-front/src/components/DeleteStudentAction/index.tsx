@@ -1,9 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { deleteStudentQuery, getStudentsQuery } from "../../services/student";
-import { GridActionsCellItem } from "@mui/x-data-grid";
+import { GridActionsCellItem, GridRowId } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { client } from "../../ApolloClient/client";
 
-export const DeleteStudentAction = ({ id }: any) => {
+interface DeleteStudentActionProps {
+  id: GridRowId;
+}
+
+export const DeleteStudentAction = ({ id }: DeleteStudentActionProps) => {
   const [deleteStudent] = useMutation(deleteStudentQuery);
 
   const handleDeleteStudent = async () => {
@@ -13,6 +18,8 @@ export const DeleteStudentAction = ({ id }: any) => {
       },
       refetchQueries: [getStudentsQuery],
     });
+
+    client.resetStore();
   };
 
   return (

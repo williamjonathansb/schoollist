@@ -1,26 +1,38 @@
 import { Modal } from "@mui/material";
 import { GridActionsCellItem } from "@mui/x-data-grid";
-import React from "react";
+import React, { ReactElement } from "react";
 import { ModalBox, SubmitButton } from "./styles";
 
-export const ModalComponent = (props: any) => {
+interface ModalComponentProps {
+  children: React.ReactNode;
+  buttonIcon?: ReactElement<any>;
+  buttonIconLabel?: string;
+  buttonName?: string;
+}
+
+export const ModalComponent = ({
+  children,
+  buttonIcon,
+  buttonIconLabel,
+  buttonName,
+}: ModalComponentProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      {props.buttonIcon ? (
+      {buttonIcon ? (
         <GridActionsCellItem
-          icon={props.buttonIcon}
-          label={props.buttonIconLabel}
+          icon={buttonIcon}
+          label={buttonIconLabel ? buttonIconLabel : ""}
           className="textPrimary"
           onClick={handleOpen}
           color="inherit"
         />
       ) : (
         <SubmitButton type="button" variant="contained" onClick={handleOpen}>
-          {props.buttonName}
+          {buttonName}
         </SubmitButton>
       )}
 
@@ -30,7 +42,7 @@ export const ModalComponent = (props: any) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ModalBox>{props.children}</ModalBox>
+        <ModalBox>{children}</ModalBox>
       </Modal>
     </div>
   );

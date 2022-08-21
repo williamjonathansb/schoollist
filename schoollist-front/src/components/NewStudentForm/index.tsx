@@ -66,7 +66,7 @@ export const NewStudentForm = () => {
     setStudentCreated(true);
   };
 
-  const handleCPFChange = (event: any) => {
+  const handleCPFChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const cpfNormalized = normalizeCPFInput(event);
     setValue("cpf", cpfNormalized);
   };
