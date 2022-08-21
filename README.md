@@ -1,8 +1,15 @@
+<div align="center">
+
 ## School List - Descomplica Challenge
 
-### Uma simples aplicação para listagem de alunos contendo cpf, nome e sobronome
+Projeto de um **CRUD** de alunos usando React, Typescript e Vite no Front-End e usando GraphQL e Typescript no Back-End
 
-<img src="https://user-images.githubusercontent.com/78751043/185766823-48202d87-3adf-4f05-af94-5c4d939371f4.png" alt="listagem de alunos" width="750"/>
+<img src="https://user-images.githubusercontent.com/78751043/185807837-d76c59ca-37f5-4ee0-bce5-d851b12d5583.png" alt="listagem de alunos" width="750"/>
+
+![GitHub language count](https://img.shields.io/github/languages/count/will-yeager/schoollist)
+![GitHub top language](https://img.shields.io/github/languages/top/will-yeager/schoollist)
+
+</div>
 
 ### Tecnologias Usadas
 * React
