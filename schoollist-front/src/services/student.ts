@@ -31,7 +31,12 @@ export const createStudentQuery = gql`
 
 export const editStudentQuery = gql`
   mutation ($id: Float!, $name: String, $cpf: String, $email: String) {
-    editStudent(id: $id, name: $name, cpf: $cpf, email: $email)
+    editStudent(id: $id, name: $name, cpf: $cpf, email: $email) {
+      id
+      cpf
+      name
+      email
+    }
   }
 `;
 

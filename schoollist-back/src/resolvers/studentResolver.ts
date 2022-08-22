@@ -28,7 +28,7 @@ export class StudentResolver {
     return createStudentUseCase({ cpf, name, email });
   }
 
-  @Mutation((returns) => Boolean)
+  @Mutation((returns) => Student)
   async editStudent(
     @Arg("id") id: number,
     @Arg("cpf", { nullable: true }) cpf: string,

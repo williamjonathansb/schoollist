@@ -40,5 +40,9 @@ export const editStudentUseCase = async ({
     email,
   });
 
-  return true;
+  return studentsRepository.findOne({
+    where: {
+      id,
+    },
+  });
 };
