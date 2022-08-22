@@ -3,7 +3,11 @@ import { CircularProgress, Typography } from "@mui/material";
 import { isCPF } from "brazilian-values";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createStudentQuery, getStudentsQuery } from "../../services/student";
+import {
+  createStudentQuery,
+  getStudentsQuery,
+  IStudent,
+} from "../../services/student";
 import {
   BoxStyled,
   ErrorMessage,
@@ -31,8 +35,32 @@ export const NewStudentForm = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const [createUser, { data, loading, error }] =
-    useMutation(createStudentQuery);
+  const [createUser, { data, loading, error }] = useMutation(
+    createStudentQuery,
+    {
+      update(cache, { data }) {
+        const resultData: { students: IStudent[] } | null = cache.readQuery({
+          query: getStudentsQuery,
+        });
+
+        if (resultData?.students) {
+          cache.writeQuery({
+            query: getStudentsQuery,
+            data: {
+              students: [data.createStudent, ...resultData.students],
+            },
+          });
+        } else {
+          cache.writeQuery({
+            query: getStudentsQuery,
+            data: {
+              students: [data.createStudent],
+            },
+          });
+        }
+      },
+    }
+  );
   const [studentCreated, setStudentCreated] = useState(false);
 
   const handleCreateStudent = async ({
@@ -55,14 +83,12 @@ export const NewStudentForm = () => {
           cpf,
           email,
         },
-        refetchQueries: [getStudentsQuery],
       });
     } catch (error) {
       return;
     }
 
     reset();
-    client.resetStore();
     setStudentCreated(true);
   };
 

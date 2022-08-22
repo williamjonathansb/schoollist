@@ -41,7 +41,26 @@ export const EditStudentForm = ({ id }: EditStudentFormProps) => {
     formState: { errors },
     reset,
   } = useForm();
-  const [editStudent, { loading, error }] = useMutation(editStudentQuery);
+  const [editStudent, { loading, error }] = useMutation(editStudentQuery, {
+    update(cache, { data }) {
+      const resultData: { students: IStudent[] } | null = cache.readQuery({
+        query: getStudentsQuery,
+      });
+
+      if (resultData?.students) {
+        const dataWithEditedStudent = resultData.students.map((s) => {
+          if (s.id === data.editStudent.id) return data.editStudent;
+          return s;
+        });
+        cache.writeQuery({
+          query: getStudentsQuery,
+          data: {
+            students: [...dataWithEditedStudent],
+          },
+        });
+      }
+    },
+  });
   const [studentEdited, setStudentEdited] = useState(false);
 
   const handleEditStudent = async ({ cpf, name, email }: InputEditStudent) => {
@@ -61,13 +80,11 @@ export const EditStudentForm = ({ id }: EditStudentFormProps) => {
           cpf: verifyString(cpf),
           email: verifyString(email),
         },
-        refetchQueries: [getStudentsQuery],
       });
     } catch (error) {
       return;
     }
 
-    client.resetStore();
     setStudentEdited(true);
   };
 

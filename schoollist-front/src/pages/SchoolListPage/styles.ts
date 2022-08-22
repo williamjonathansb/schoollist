@@ -31,7 +31,7 @@ export const SchoolListPageBox = styled(Box)`
     align-items: center;
     gap: 15px;
 
-    @media (max-width: 850px) {
+    @media (max-width: 600px) {
       flex-direction: column;
     }
   }
